@@ -14,14 +14,16 @@
 - Removed sidebar, replaced with slim top bar (settings gear + sign out)
 - Disconnected calendar from nav (route still exists)
 - New SVG favicon matching sage green accent
-- Changes are LOCAL ONLY — not deployed yet
+- Deployed redesign to Vercel
 
 ## Current state
+- Moved to `~/claude/mch-studio/` (standalone, out of mch-projects)
+- GitHub: https://github.com/mattchx/mch-studio
+- Deployed to https://mch-studio.vercel.app
 - Auth is **temporarily disabled** — app is open access, /login redirects to /queue
-- UI redesign is local, needs deploy
+- Dev server runs on port 3001
 
 ## Next steps
-- Deploy redesign to Vercel
 - Re-enable auth: configure Resend as custom SMTP in Supabase, or fix PKCE magic link redirect URLs
 - Clean up old DB tables (follow_ups, call_logs, contacts) from Command Center era
 - Delete old `command-center` Vercel project
