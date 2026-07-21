@@ -1,19 +1,50 @@
 # MCH Studio
 
-Content creation, preview, and approval dashboard. Claude Code agents generate client content locally, push it to Supabase. Matt reviews/approves here. Calendar view for scheduling.
+Lightweight local creative production system for social, marketing, ads, and practical video ideas. The old review queue/calendar surface has been removed, and the app is optional scaffolding. The source of truth is `studio-runs/`.
 
-CRM features (pipeline, contacts, follow-ups, call logs) live in **Arc** now.
+Creative bar: MCH Studio exists to produce assets worth publishing, not just drafts that technically exist. For now, a publishable asset is usually a strong organic post or hard-ad variant with a generated image. Real-camera videos may come later as selfie/talking-head recordings or Loom/OBS-style screen recordings.
+
+## 2026 Direction — Simple Local Studio
+
+MCH Studio is the Codex-front-runner project. Use it to build the creative production system for social media, marketing, ads, and short-form video.
+
+Current core workflows:
+- raw idea → organic social post
+- raw idea → hard-ad style variant
+- post variant → generated image through Gemini, ChatGPT/Codex image tools, or another local/manual image flow
+- later: raw idea → talking-head/selfie video outline
+- later: raw idea → Loom/OBS-style screen-recording outline for LinkedIn, YouTube, or Shorts
+
+Working lanes:
+- UI lane: improve the Next.js Studio surface at `/studio`, `/studio/saved`, previews, and the Ads Simulator. This lane should make the local workflow easier to review and operate, not move generation into the app by default.
+- Social/ads lane: highest-priority production lane. Turn raw ideas into saved bundles with organic social first, plus a hard-ad style variant when useful. Keep this lane in `studio-runs/posts.json`, generated images, reusable hooks, and manual publish readiness.
+- Practical video lane: separate planning lane for selfie/talking-head and Loom/OBS-style scripts or shot lists. Do not make this the default workflow, and do not revive Remotion, AI video, or elaborate motion unless Matt explicitly asks.
+
+Operating model:
+- Codex leads bounded implementation inside this project
+- Claude Code remains coordinator for vault/business continuity, strategy notes, and cross-project integration
+- Prefer reusable, data-driven content schemas over one-off generation flows
+- Remotion, AI video generation, and fancy motion systems are shelved unless Matt explicitly revives them
+- Keep video practical and organic: real camera, screen recording, or straightforward image-led posts
+- Keep strategic source-of-truth notes in the vault, not app code
+- Update `STATUS.md` after meaningful work
+- When generating Studio post bundles from an idea (slash command `/studio-generate` or equivalent prompt), follow `studio-runs/_skills/studio-generate.md` exactly — that file is the source of truth shared with Codex/Gemini
+
+First product target: a repeatable local workflow where a raw idea becomes a saved post bundle with text variants and generated images.
 
 ## Architecture
-- **Generation:** Claude Code agent runs locally → generates text + calls Gemini Imagen API for images → writes to Supabase
-- **Dashboard:** Next.js app (read/review only) → reads from Supabase, approve/reject/publish workflow
-- The app does NOT call any AI APIs directly
+- **Source of truth:** local files under `studio-runs/`
+- **Current app:** optional Next.js signpost at `/studio`
+- **Current persistence:** `studio-runs/posts.json` plus generated media under `studio-runs/media/`
+- **Current generation:** Codex/local agents append saved post bundles directly
+- **AI/API boundary:** the app does NOT call AI APIs directly unless the architecture is intentionally changed and documented
+- **Next architecture step:** prove the simple post/image workflow with real ideas before rebuilding app/database features
 
-## Agent CLI (`scripts/cc.sh`)
+## Agent CLI (`scripts/cc.sh`) — Legacy/Reserved
 
-All Supabase operations go through `scripts/cc.sh`. Always use absolute path:
+The old Supabase content CLI still exists but is not part of the active Studio surface. Use it only if intentionally reviving or migrating old Supabase data. Always use absolute path:
 ```
-/Users/mattch/claude/mch-projects/mch-studio/scripts/cc.sh <command>
+/Users/mattch/dev/code/personal/mch-studio/scripts/cc.sh <command>
 ```
 
 ### Commands
@@ -40,104 +71,39 @@ fail-job <job_id> "message"           Mark job failed
 upload-image <local_path> <storage_path>   Upload to Supabase Storage
 ```
 
-## Content Generation Workflow
+## Studio Workflow
 
-When asked to generate content for a client:
+Active workflow:
+- raw idea → saved post bundle in `studio-runs/posts.json`
+- saved bundle → organic post + hard-ad variant
+- each variant → generated image when useful
+- app preview → manual review
+- done → ready or published via `scripts/posts.sh`
 
-### 1. Get Client Context
-```bash
-cc.sh get-client <slug>
-cc.sh get-profile <client_id>
-```
-
-### 2. Log the Job
-```bash
-cc.sh start-job '{"client_id":"...","job_type":"monthly_social","config":{"month":"2026-04","count":4}}'
-```
-
-### 3. Generate Content
-You (Claude Code) generate the text directly — you ARE the LLM. Use the client profile (brand voice, target audience, services, guidelines) to write content.
-
-**Content types:**
-- `social` — Instagram/Facebook caption (150-280 chars), hashtags, CTA
-- `blog` — SEO title, meta description, 600-800 word article in markdown
-- `gbp_post` — Google Business Profile update (100-300 chars), CTA
-- `newsletter` — Email newsletter content
-- `report` — Monthly performance report
-
-### 4. Generate Images (if needed)
-Call Gemini Imagen 4 API. Save to `/tmp/`, then upload:
-```bash
-source ~/.zshrc && curl -s -X POST \
-  "https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:predict?key=$GEMINI_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{"instances":[{"prompt":"YOUR PROMPT"}],"parameters":{"sampleCount":1,"aspectRatio":"1:1"}}' \
-  | python3 -c "
-import json,sys,base64
-data=json.load(sys.stdin)
-if 'predictions' in data:
-    open('/tmp/content-image.jpg','wb').write(base64.b64decode(data['predictions'][0]['bytesBase64Encoded']))
-    print('saved')
-else:
-    print('Error:',json.dumps(data,indent=2))
-"
-
-# Upload to Supabase Storage
-cc.sh upload-image /tmp/content-image.jpg "<client-slug>/social-001.jpg"
-```
-
-Image prompt guidelines:
-- Social: `[service] clinic, [topic], warm professional lighting, clean minimal, no text overlay, no faces, photorealistic, square`
-- Blog: `[service] treatment room, [topic], warm clinical lighting, wide angle, no people, photorealistic, 16:9`
-
-### 5. Push Content
-```bash
-cc.sh push-content '{
-  "client_id": "...",
-  "content_type": "social",
-  "status": "pending_review",
-  "title": "Post Title",
-  "body": "Caption text...",
-  "image_url": "https://toipreojjlkbgktajypd.supabase.co/storage/v1/object/public/content-images/...",
-  "metadata": {"hashtags": "...", "platforms": ["instagram", "facebook"]},
-  "due_date": "2026-04-07T00:00:00Z"
-}'
-```
-
-### 6. Complete the Job
-```bash
-cc.sh complete-job <job_id> <items_created>
-```
-
-## Scheduling Content
-When generating a month of content, spread due dates evenly:
-- 4 social posts → ~weekly (days 1, 8, 15, 22)
-- 1 blog post → mid-month (day 15)
-- 4 GBP posts → ~weekly
+Chat split:
+- Use a UI chat for Studio interface changes and visual polish.
+- Use a production chat for social posts, hard-ad variants, generated images, and `posts.json` updates.
+- Use a video chat only for practical video concepts, scripts, recording plans, and future short-form repurposing.
 
 ## Stack
 - Next.js 16, TypeScript, Tailwind 4
 - Supabase (auth, DB, storage) — project ref: `toipreojjlkbgktajypd`
-- Vercel (deployment) — https://command-center-cyan-gamma.vercel.app
+- Vercel (deployment) — https://mch-studio.vercel.app
 
 ## Key Paths
-- `scripts/cc.sh` — Agent CLI for Supabase operations
-- `src/app/(dashboard)/queue/` — Main review queue
-- `src/app/(dashboard)/calendar/` — Content calendar
-- `src/app/(dashboard)/content/[id]/` — Content detail + review actions
-- `src/app/api/content/[id]/` — Content item CRUD
+- `studio-runs/README.md` — Operating protocol
+- `studio-runs/inbox.md` — Raw idea capture
+- `studio-runs/_templates/production-run/` — Reusable run template
+- `studio-runs/2026-04-workflow-first-mch-studio/` — First real run
+- `src/app/(dashboard)/studio/` — Optional signpost page
+- `src/components/ui/` — Local UI primitives, if the app earns its way back in
 - `src/lib/supabase/` — Client & server Supabase wrappers
 - `src/proxy.ts` — Auth middleware (Next.js 16 proxy pattern)
-- `src/types/database.ts` — TypeScript types for DB schema
 
-## Database (Supabase)
-- `clients` — business name, slug, category, brand
-- `client_profiles` — brand voice, target audience, services, guidelines
-- `content_items` — content queue (social, blog, gbp_post, etc.)
-- `generation_jobs` — tracks agent-triggered generation runs
-- `content-images` bucket — public storage for generated images
-- RLS: all tables admin-only via `is_admin()` (checks `matt@mchproj.com`)
-- Service role key bypasses RLS (used by agent to write data)
+## Persistence
+- Current workflow state lives in `studio-runs/`
+- Supabase is not required for the active workflow
+- Browser localStorage is not a source of truth
 
 ## Env Vars
 - Shell (`~/.zshrc`): `CC_SUPABASE_URL`, `CC_SUPABASE_SERVICE_KEY`, `GEMINI_API_KEY`

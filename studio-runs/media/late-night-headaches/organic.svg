@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-label="MCH Projects late night business problems organic visual">
+  <defs>
+    <filter id="cardShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#0E1726" flood-opacity="0.1"/>
+    </filter>
+    <linearGradient id="shade" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0E1726" stop-opacity="0.08"/>
+      <stop offset="1" stop-color="#0E1726" stop-opacity="0.5"/>
+    </linearGradient>
+    <clipPath id="photoClip">
+      <rect x="76" y="126" width="1048" height="550" rx="0"/>
+    </clipPath>
+  </defs>
+
+  <rect width="1200" height="900" fill="#F6F7FA"/>
+  <rect x="48" y="48" width="1104" height="804" fill="#FFFFFF" stroke="#E4E7EF" stroke-width="2" filter="url(#cardShadow)"/>
+
+  <g transform="translate(94 74)">
+    <rect x="0" y="0" width="36" height="36" rx="9" fill="#0E1726"/>
+    <rect x="9" y="9" width="8" height="8" rx="2" fill="#FFFFFF" opacity="0.45"/>
+    <rect x="21" y="9" width="8" height="8" rx="2" fill="#FFFFFF" opacity="0.7"/>
+    <rect x="9" y="21" width="8" height="8" rx="2" fill="#FFFFFF" opacity="0.7"/>
+    <rect x="21" y="21" width="8" height="8" rx="2" fill="#FFFFFF"/>
+    <text x="52" y="25" fill="#0E1726" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="800">MCH Projects</text>
+    <text x="770" y="25" fill="#1E4DD8" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="900" letter-spacing="2.3">LATE-NIGHT CLARITY</text>
+  </g>
+
+  <g clip-path="url(#photoClip)">
+    <image href="source-night-scene.png" x="76" y="126" width="1048" height="550" preserveAspectRatio="xMidYMid slice"/>
+    <rect x="76" y="126" width="1048" height="550" fill="url(#shade)"/>
+  </g>
+
+  <g transform="translate(118 546)">
+    <rect x="0" y="0" width="610" height="94" fill="#FFFFFF" fill-opacity="0.92" stroke="#E4E7EF"/>
+    <text x="28" y="38" fill="#0E1726" font-family="Georgia, 'Times New Roman', serif" font-size="34" font-weight="700">Two different midnight problems.</text>
+    <text x="29" y="70" fill="#56617A" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="600">Operations headaches vs. growth and lead pressure.</text>
+  </g>
+
+  <g transform="translate(96 716)" font-family="Arial, Helvetica, sans-serif">
+    <rect x="0" y="0" width="1008" height="76" fill="#EEF2FE" stroke="#C8D0DE"/>
+    <circle cx="36" cy="38" r="8" fill="#1E4DD8"/>
+    <text x="60" y="45" fill="#0E1726" font-size="22" font-weight="800">The useful first move is naming which one is actually keeping you up.</text>
+  </g>
+</svg>

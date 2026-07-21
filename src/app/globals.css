@@ -1,26 +1,26 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* Softer dark backgrounds */
-  --color-bg: #18191b;
-  --color-surface: #212225;
-  --color-surface-2: #2a2b2e;
+  /* Clean Studio surfaces */
+  --color-bg: #fffdf7;
+  --color-surface: #ffffff;
+  --color-surface-2: #fff8df;
 
   /* Borders */
-  --color-border: #38393c;
-  --color-border-subtle: #2e2f32;
+  --color-border: #d8cdae;
+  --color-border-subtle: #eadfbe;
 
-  /* Text — high contrast */
-  --color-foreground: #ececec;
-  --color-muted: #b0b3b8;
+  /* Text */
+  --color-foreground: #1e211e;
+  --color-muted: #5b6159;
 
-  /* Sage green accent — distinct from Labs (gold) and Projects (blue) */
-  --color-accent: #6dba7a;
-  --color-accent-hover: #85c990;
-  --color-accent-muted: rgba(109, 186, 122, 0.15);
+  /* Warm ad-tool accent */
+  --color-accent: #d9a441;
+  --color-accent-hover: #f0c866;
+  --color-accent-muted: rgba(217, 164, 65, 0.18);
 
   /* Semantic */
-  --color-success: #6dba7a;
+  --color-success: #d9a441;
   --color-warning: #e0a543;
   --color-danger: #d9534f;
   --color-info: #5b9bd5;

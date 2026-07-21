@@ -1,0 +1,100 @@
+{
+  "posts": [
+    {
+      "id": "rhythm-beats-polish",
+      "idea": "marketing problems are rhythm problems, not creative problems",
+      "title": "Rhythm beats polish",
+      "variants": [
+        {
+          "type": "organic",
+          "body": "Most marketing problems are not creative problems.\n\nThey are rhythm problems.\n\nIf you can't ship one useful thing per week, no hook will save you."
+        },
+        {
+          "type": "hard_ad",
+          "body": "Stop redesigning the funnel.\n\nFix the rhythm first — one useful asset, every week, for ninety days.\n\nWe build the rhythm with you.",
+          "cta": "Get the rhythm brief"
+        }
+      ],
+      "status": "draft",
+      "updated_at": "2026-05-04T10:00:00Z"
+    },
+    {
+      "id": "three-slots-open",
+      "idea": "open three retainer slots quietly without an offer page",
+      "title": "Three slots, quietly",
+      "variants": [
+        {
+          "type": "organic",
+          "body": "Quietly opening three slots for a new kind of marketing engagement this month.\n\nNot an agency retainer. Not a course.\n\nDM the word \"rhythm\" if you want the brief."
+        },
+        {
+          "type": "hard_ad",
+          "body": "Three slots. One operator. Sixty days.\n\nNo retainer trap, no rebrand cycle — just a rhythm of useful assets your buyers can feel.",
+          "cta": "Claim a slot"
+        }
+      ],
+      "status": "ready",
+      "updated_at": "2026-05-03T09:10:00Z"
+    },
+    {
+      "id": "mch-projects-biz-intro",
+      "idea": "MCH Projects pivot to automation systems for lead follow-up, onboarding, and owner-controlled workflows",
+      "title": "Automation leak map",
+      "variants": [
+        {
+          "type": "organic",
+          "body": "I'm repositioning MCH Projects around a simpler promise:\n\nlead follow-up and onboarding automation for owner-led service businesses.\n\nThe website still matters. But the bigger leak is usually what happens after a real person raises their hand.\n\nA form lands in an inbox.\nA call goes to voicemail.\nA quote request waits too long.\nA new client says yes, then the next steps live in someone's head.\n\nThe first useful system is usually not huge.\n\nCapture the inquiry.\nRoute it to an owner.\nQueue the follow-up.\nMove the client into onboarding.\nGive the business one calm view of what is new, contacted, booked, and stalled.\n\nThat's the work I want MCH Projects to become known for.",
+          "image": "mch-projects-biz-intro/automation-system.svg"
+        },
+        {
+          "type": "hard_ad",
+          "body": "Where are leads leaking?\n\nMCH Projects maps and builds the first useful automation system for service businesses: lead capture, routing, follow-up, onboarding, and an owner view that shows what is stuck.\n\nLess inbox babysitting. Fewer loose handoffs. No rented black box.",
+          "image": "mch-projects-biz-intro/automation-leak-map.svg",
+          "cta": "Get the leak map"
+        }
+      ],
+      "status": "draft",
+      "updated_at": "2026-05-06T20:20:00Z"
+    },
+    {
+      "id": "free-road-map",
+      "idea": "create base ad with image based on mch projects site design-overlay route. Free road map",
+      "title": "Free road map for messy workflows",
+      "variants": [
+        {
+          "type": "organic",
+          "body": "I'm testing a simple free road map for service-business owners who can feel the operation getting too manual.\n\nNot a 40-page strategy PDF.\n\nOne page: where leads or client handoffs are leaking, which step should be systemized first, and what can wait.\n\nThe useful first build is usually boring in the best way: capture the request, route the next action, follow up on time, and show what is stuck.",
+          "image": "free-road-map/organic.png"
+        },
+        {
+          "type": "hard_ad",
+          "body": "Your next system is not a rebuild.\n\nGet a free road map that shows where leads, intake, quoting, follow-up, and onboarding are getting stuck, then ranks the first practical fix.\n\nPlain English. One process at a time. Built for owner-led service businesses that have outgrown spreadsheets, shared inboxes, and memory.",
+          "image": "free-road-map/hard_ad.png",
+          "cta": "Get the road map"
+        }
+      ],
+      "status": "draft",
+      "updated_at": "2026-05-29T16:17:25Z"
+    },
+    {
+      "id": "late-night-headaches",
+      "idea": "what keeps you up late at night; image of one man and one woman being kept up late at night; 1) digital systems to solve organization headaches; 2) digital marketing to drive business growth/leads",
+      "title": "What keeps you up late",
+      "variants": [
+        {
+          "type": "organic",
+          "body": "I keep coming back to this question:\n\nWhat keeps the owner awake after the laptop is closed?\n\nSometimes it is the business itself: intake, quotes, follow-ups, dashboards, handoffs.\n\nSometimes it is demand: not enough qualified leads, no clear offer, marketing that only works when you personally push it.\n\nThose are different problems. They need different systems.\n\nThe useful first move is naming which one is actually keeping you up.",
+          "image": "late-night-headaches/organic.png"
+        },
+        {
+          "type": "hard_ad",
+          "body": "Your business probably has one of two midnight problems.\n\nThe work is scattered, manual, and hard to see.\n\nOr the leads are not predictable enough.\n\nMCH Projects helps owner-led teams find the first bottleneck, then build the system around it.",
+          "image": "late-night-headaches/hard_ad.png",
+          "cta": "Book a systems audit"
+        }
+      ],
+      "status": "draft",
+      "updated_at": "2026-05-29T18:06:04Z"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "compositionId": "mch-short-script-v1",
+  "format": "vertical_9_16",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "durationFrames": 0,
+  "title": "{{title}}",
+  "sourceIdea": "{{raw_idea}}",
+  "scenes": []
+}

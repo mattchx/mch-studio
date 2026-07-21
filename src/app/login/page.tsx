@@ -34,17 +34,17 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-bg p-4">
+    <div className="min-h-screen flex items-center justify-center bg-[#fffdf7] p-4 text-[#1e211e]">
       <div className="w-full max-w-sm">
         <div className="flex items-center gap-2 justify-center mb-8">
-          <Palette className="w-6 h-6 text-accent" />
+          <Palette className="w-6 h-6 text-[#d9a441]" />
           <span className="text-lg font-semibold">MCH Studio</span>
         </div>
 
         <Card>
           {sent ? (
             <div className="text-center space-y-3">
-              <Mail className="w-8 h-8 text-accent mx-auto" />
+              <Mail className="w-8 h-8 text-[#d9a441] mx-auto" />
               <p className="text-sm text-foreground">Check your email</p>
               <p className="text-xs text-muted">
                 We sent a magic link to <span className="text-foreground">{email}</span>

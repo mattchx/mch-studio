@@ -1,0 +1,1359 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Case Study | Client Intake Form With Email Delivery</title>
+    <style>
+      :root {
+        --paper: #f5f1e8;
+        --sheet: #fffdf7;
+        --ink: #16130f;
+        --muted: #696054;
+        --line: #211b14;
+        --gold: #f0bd3d;
+        --blue: #7bb7c8;
+        --green: #82b768;
+        --red: #de6c55;
+        --lavender: #b6a2de;
+        --shadow: 10px 10px 0 #16130f;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        background: var(--paper);
+        color: var(--ink);
+        font-family:
+          Charter,
+          "Bitstream Charter",
+          "Iowan Old Style",
+          Georgia,
+          serif;
+        line-height: 1.55;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      .page {
+        max-width: 1160px;
+        margin: 0 auto;
+        padding: 32px 20px 80px;
+      }
+
+      .case-sheet {
+        background:
+          linear-gradient(rgba(22, 19, 15, 0.045) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(22, 19, 15, 0.035) 1px, transparent 1px),
+          var(--sheet);
+        background-size: 32px 32px;
+        border: 2px solid var(--line);
+        box-shadow: var(--shadow);
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+        gap: 36px;
+        padding: 44px;
+        border-bottom: 2px solid var(--line);
+      }
+
+      .eyebrow,
+      .stamp,
+      .label {
+        font-family:
+          "Avenir Next Condensed",
+          "DIN Condensed",
+          "Arial Narrow",
+          sans-serif;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 18px;
+        font-size: 13px;
+      }
+
+      .eyebrow::before {
+        content: "";
+        width: 26px;
+        height: 12px;
+        background: var(--gold);
+        border: 2px solid var(--line);
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        max-width: 720px;
+        margin-bottom: 20px;
+        font-family:
+          "Avenir Next Condensed",
+          "DIN Condensed",
+          Impact,
+          sans-serif;
+        font-size: clamp(48px, 7vw, 86px);
+        line-height: 0.9;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      .dek {
+        max-width: 700px;
+        margin-bottom: 28px;
+        font-size: 22px;
+        line-height: 1.35;
+      }
+
+      .meta-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .meta-card,
+      .metric,
+      .callout,
+      .diagram,
+      .principle,
+      .timeline-item {
+        background: rgba(255, 253, 247, 0.94);
+        border: 2px solid var(--line);
+      }
+
+      .meta-card {
+        min-height: 112px;
+        padding: 14px;
+      }
+
+      .label {
+        margin-bottom: 6px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .meta-card strong {
+        display: block;
+        font-size: 19px;
+        line-height: 1.1;
+      }
+
+      .hero-visual {
+        align-self: start;
+        min-height: 0;
+        padding: 22px;
+        background: var(--gold);
+        border: 2px solid var(--line);
+        box-shadow: 8px 8px 0 var(--line);
+        position: relative;
+        overflow: visible;
+      }
+
+      .hero-visual::before {
+        content: "";
+        position: absolute;
+        inset: 16px;
+        border: 2px dashed rgba(22, 19, 15, 0.55);
+      }
+
+      .flow-card {
+        position: relative;
+        z-index: 1;
+        width: calc(100% - 28px);
+        margin: 0 auto 11px;
+        padding: 14px 16px;
+        display: grid;
+        grid-template-columns: 64px minmax(0, 1fr);
+        gap: 14px;
+        align-items: center;
+        background: var(--sheet);
+        border: 2px solid var(--line);
+        box-shadow: 5px 5px 0 rgba(22, 19, 15, 0.35);
+        transform: rotate(-1deg);
+      }
+
+      .flow-card::after {
+        content: "";
+        position: absolute;
+        left: 40px;
+        bottom: -18px;
+        width: 3px;
+        height: 15px;
+        background: var(--line);
+      }
+
+      .flow-card:last-of-type::after {
+        display: none;
+      }
+
+      .flow-card:nth-child(2) {
+        background: #e8f2f3;
+        transform: rotate(1.5deg);
+      }
+
+      .flow-card:nth-child(3) {
+        background: #eef3e6;
+        transform: rotate(-0.5deg);
+      }
+
+      .flow-card:nth-child(4) {
+        background: #fbe8e1;
+        transform: rotate(1deg);
+      }
+
+      .phase-icon {
+        width: 58px;
+        height: 58px;
+        display: grid;
+        place-items: center;
+        border: 2px solid var(--line);
+        border-radius: 50%;
+        background: var(--sheet);
+        box-shadow: 4px 4px 0 rgba(22, 19, 15, 0.25);
+      }
+
+      .phase-icon svg {
+        width: 32px;
+        height: 32px;
+        fill: none;
+        stroke: var(--ink);
+        stroke-width: 2.4;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .flow-card:nth-child(1) .phase-icon {
+        background: #dcecff;
+      }
+
+      .flow-card:nth-child(2) .phase-icon {
+        background: #f8e9ff;
+      }
+
+      .flow-card:nth-child(3) .phase-icon {
+        background: #fff1c4;
+      }
+
+      .flow-card:nth-child(4) .phase-icon {
+        background: #e9f5e4;
+      }
+
+      .phase-copy {
+        min-width: 0;
+      }
+
+      .flow-card strong {
+        display: block;
+        font-family:
+          "Avenir Next Condensed",
+          "Arial Narrow",
+          sans-serif;
+        font-size: 23px;
+        line-height: 1;
+        text-transform: uppercase;
+      }
+
+      .flow-card span {
+        display: block;
+        margin-top: 5px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .stamp {
+        z-index: 3;
+        position: absolute;
+        left: 43%;
+        top: auto;
+        bottom: -218px;
+        width: 218px;
+        height: 158px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        padding: 30px 34px;
+        color: var(--ink);
+        font-family:
+          "Avenir Next Condensed",
+          "Arial Narrow",
+          sans-serif;
+        font-size: 18px;
+        font-weight: 900;
+        line-height: 0.88;
+        text-align: center;
+        text-transform: uppercase;
+        isolation: isolate;
+        transform: translateX(-50%) rotate(-12deg);
+      }
+
+      .stamp::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background: var(--gold);
+        clip-path: polygon(
+          50% 0%,
+          54% 8%,
+          60% 2%,
+          64% 11%,
+          71% 7%,
+          73% 17%,
+          80% 15%,
+          81% 26%,
+          89% 26%,
+          87% 37%,
+          96% 42%,
+          89% 50%,
+          96% 58%,
+          87% 63%,
+          89% 74%,
+          81% 74%,
+          80% 85%,
+          73% 83%,
+          71% 93%,
+          64% 89%,
+          60% 98%,
+          54% 92%,
+          50% 100%,
+          46% 92%,
+          40% 98%,
+          36% 89%,
+          29% 93%,
+          27% 83%,
+          20% 85%,
+          19% 74%,
+          11% 74%,
+          13% 63%,
+          4% 58%,
+          11% 50%,
+          4% 42%,
+          13% 37%,
+          11% 26%,
+          19% 26%,
+          20% 15%,
+          27% 17%,
+          29% 7%,
+          36% 11%,
+          40% 2%,
+          46% 8%
+        );
+        filter:
+          drop-shadow(0 0 0 var(--line))
+          drop-shadow(6px 7px 0 rgba(22, 19, 15, 0.38));
+      }
+
+      .stamp::after {
+        content: "";
+        position: absolute;
+        inset: 25px 18px;
+        z-index: 0;
+        border: 3px solid var(--line);
+        border-radius: 50%;
+        background: var(--sheet);
+        box-shadow: 4px 5px 0 rgba(22, 19, 15, 0.2);
+      }
+
+      .stamp span {
+        position: relative;
+        z-index: 1;
+        display: block;
+      }
+
+      .stamp-main {
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        font-size: 25px;
+        line-height: 0.9;
+      }
+
+      .stamp-small {
+        font-size: 18px;
+      }
+
+      .section {
+        padding: 42px 44px;
+        border-bottom: 2px solid var(--line);
+      }
+
+      .section:last-child {
+        border-bottom: 0;
+      }
+
+      .section-grid {
+        display: grid;
+        grid-template-columns: 280px minmax(0, 1fr);
+        gap: 42px;
+      }
+
+      h2 {
+        font-family:
+          "Avenir Next Condensed",
+          "DIN Condensed",
+          Impact,
+          sans-serif;
+        font-size: clamp(34px, 4vw, 56px);
+        line-height: 0.95;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      h3 {
+        margin-bottom: 10px;
+        font-family:
+          "Avenir Next Condensed",
+          "Arial Narrow",
+          sans-serif;
+        font-size: 27px;
+        line-height: 1;
+        text-transform: uppercase;
+      }
+
+      .section p,
+      li {
+        max-width: 800px;
+        font-size: 18px;
+      }
+
+      .lead {
+        font-size: 22px;
+        line-height: 1.35;
+      }
+
+      .pullquote {
+        margin: 20px 0 0;
+        padding: 22px 24px;
+        background: var(--ink);
+        color: var(--sheet);
+        font-family:
+          "Avenir Next Condensed",
+          "Arial Narrow",
+          sans-serif;
+        font-size: clamp(26px, 3.2vw, 38px);
+        line-height: 1;
+        text-transform: uppercase;
+      }
+
+      .metrics {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+        margin-top: 24px;
+      }
+
+      .metric {
+        padding: 18px;
+        min-height: 150px;
+      }
+
+      .metric .number {
+        display: block;
+        margin-bottom: 10px;
+        font-family:
+          "Avenir Next Condensed",
+          "Arial Narrow",
+          sans-serif;
+        font-size: 44px;
+        line-height: 0.9;
+        text-transform: uppercase;
+      }
+
+      .metric:nth-child(1) {
+        background: #fff1c4;
+      }
+
+      .metric:nth-child(2) {
+        background: #e7f1f3;
+      }
+
+      .metric:nth-child(3) {
+        background: #edf5e8;
+      }
+
+      .workflow {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+        margin-top: 26px;
+      }
+
+      .diagram {
+        padding: 18px;
+        overflow: hidden;
+      }
+
+      .diagram-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: 18px;
+      }
+
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 82px;
+        padding: 6px 10px;
+        border: 2px solid var(--line);
+        background: var(--gold);
+        font-family:
+          "Avenir Next Condensed",
+          "Arial Narrow",
+          sans-serif;
+        font-weight: 800;
+        text-transform: uppercase;
+      }
+
+      .steps {
+        display: grid;
+        gap: 10px;
+      }
+
+      .step {
+        display: grid;
+        grid-template-columns: 34px minmax(0, 1fr);
+        gap: 10px;
+        align-items: start;
+        padding: 10px;
+        border: 2px solid var(--line);
+        background: var(--sheet);
+      }
+
+      .step b {
+        display: grid;
+        width: 34px;
+        height: 34px;
+        place-items: center;
+        background: var(--ink);
+        color: var(--sheet);
+        font-family:
+          "Avenir Next Condensed",
+          "Arial Narrow",
+          sans-serif;
+      }
+
+      .step span {
+        padding-top: 3px;
+        font-size: 16px;
+        line-height: 1.25;
+      }
+
+      .after .step {
+        background: #eff7ec;
+      }
+
+      .before .step {
+        background: #fff2df;
+      }
+
+      .benefit-map {
+        margin-top: 26px;
+        padding: 22px;
+        background: #f7eadf;
+        border: 2px solid var(--line);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .benefit-map::before {
+        content: "";
+        position: absolute;
+        inset: -60px;
+        background:
+          radial-gradient(circle at 20% 35%, rgba(240, 189, 61, 0.48), transparent 24%),
+          radial-gradient(circle at 70% 32%, rgba(123, 183, 200, 0.48), transparent 25%),
+          radial-gradient(circle at 52% 70%, rgba(130, 183, 104, 0.46), transparent 27%);
+      }
+
+      .benefit-flow {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 86px minmax(0, 1fr);
+        gap: 18px;
+        align-items: center;
+      }
+
+      .benefit-stack {
+        display: grid;
+        gap: 12px;
+      }
+
+      .benefit-card,
+      .outcome-card {
+        border: 3px solid var(--line);
+        box-shadow: 6px 6px 0 rgba(22, 19, 15, 0.25);
+      }
+
+      .benefit-card {
+        min-height: 112px;
+        padding: 16px 18px;
+        background: var(--sheet);
+      }
+
+      .benefit-card:nth-child(1) {
+        background: #fff1c4;
+      }
+
+      .benefit-card:nth-child(2) {
+        background: #e8f2f3;
+      }
+
+      .benefit-card:nth-child(3) {
+        background: #e9f5e4;
+      }
+
+      .benefit-card strong,
+      .outcome-card strong {
+        display: block;
+        margin-bottom: 8px;
+        font-family:
+          "Avenir Next Condensed",
+          "Arial Narrow",
+          sans-serif;
+        font-size: 27px;
+        line-height: 0.95;
+        text-transform: uppercase;
+      }
+
+      .benefit-card p,
+      .outcome-card p {
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.35;
+      }
+
+      .benefit-arrow {
+        display: grid;
+        width: 86px;
+        height: 86px;
+        place-items: center;
+        border: 3px solid var(--line);
+        border-radius: 50%;
+        background: var(--gold);
+        box-shadow: 5px 5px 0 rgba(22, 19, 15, 0.3);
+        font-family:
+          "Avenir Next Condensed",
+          "Arial Narrow",
+          sans-serif;
+        font-size: 46px;
+        font-weight: 800;
+      }
+
+      .outcome-card {
+        padding: 24px;
+        background: #dcecff;
+      }
+
+      .principles {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+        margin-top: 26px;
+      }
+
+      .principle {
+        padding: 18px;
+        min-height: 180px;
+      }
+
+      .principle:nth-child(1) {
+        background: #e8f2f3;
+      }
+
+      .principle:nth-child(2) {
+        background: #fff1c4;
+      }
+
+      .principle:nth-child(3) {
+        background: #f5e9ff;
+      }
+
+      .tier-ladder {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        margin-top: 26px;
+        align-items: center;
+      }
+
+      .tier {
+        border: 2px solid var(--line);
+        background: var(--sheet);
+        box-shadow: 6px 6px 0 rgba(22, 19, 15, 0.28);
+      }
+
+      .tier:nth-child(1) {
+        min-height: 210px;
+      }
+
+      .tier:nth-child(2) {
+        min-height: 280px;
+        background: #e9f5e4;
+      }
+
+      .tier:nth-child(3) {
+        min-height: 350px;
+        background: #e8f2f3;
+      }
+
+      .tier-head {
+        padding: 12px 14px;
+        border-bottom: 2px solid var(--line);
+        background: var(--ink);
+        color: var(--sheet);
+        font-family:
+          "Avenir Next Condensed",
+          "Arial Narrow",
+          sans-serif;
+        font-size: 26px;
+        line-height: 1;
+        text-transform: uppercase;
+      }
+
+      .tier-body {
+        padding: 16px;
+      }
+
+      .tier-body p {
+        font-size: 16px;
+      }
+
+      .callout {
+        margin-top: 24px;
+        padding: 20px;
+        background: #fff1c4;
+        box-shadow: 6px 6px 0 rgba(22, 19, 15, 0.22);
+      }
+
+      .closing {
+        display: grid;
+        grid-template-columns: 1fr 260px;
+        gap: 32px;
+        align-items: center;
+      }
+
+      .mark {
+        width: 220px;
+        height: 220px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        justify-self: end;
+        border: 3px solid var(--line);
+        border-radius: 50%;
+        background: var(--gold);
+        box-shadow: 8px 8px 0 var(--line);
+        font-family:
+          "Avenir Next Condensed",
+          "Arial Narrow",
+          sans-serif;
+        font-size: 31px;
+        line-height: 0.82;
+        text-align: center;
+        text-transform: uppercase;
+        transform: rotate(5deg);
+      }
+
+      .mark span {
+        display: block;
+      }
+
+      @media (max-width: 900px) {
+        .hero,
+        .section-grid,
+        .workflow,
+        .closing {
+          grid-template-columns: 1fr;
+        }
+
+        .hero,
+        .section {
+          padding: 28px;
+        }
+
+        .meta-grid,
+        .metrics,
+        .principles,
+        .tier-ladder {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-visual {
+          min-height: 390px;
+          align-self: stretch;
+        }
+
+        .benefit-flow {
+          grid-template-columns: 1fr;
+        }
+
+        .benefit-arrow {
+          justify-self: center;
+          transform: rotate(90deg);
+        }
+
+        .mark {
+          justify-self: start;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .page {
+          padding: 16px 10px 48px;
+        }
+
+        .case-sheet {
+          box-shadow: 5px 5px 0 #16130f;
+        }
+
+        .hero,
+        .section {
+          padding: 22px 18px;
+        }
+
+        .dek,
+        .lead {
+          font-size: 19px;
+        }
+
+        .section p,
+        li {
+          font-size: 16px;
+        }
+
+        .hero-visual {
+          padding: 14px;
+        }
+
+        .flow-card,
+        .flow-card:nth-child(2),
+        .flow-card:nth-child(3),
+        .flow-card:nth-child(4) {
+          margin-left: 0;
+        }
+
+        .flow-card {
+          grid-template-columns: 52px minmax(0, 1fr);
+          gap: 10px;
+          padding: 12px;
+        }
+
+        .flow-card::after {
+          left: 34px;
+        }
+
+        .phase-icon {
+          width: 48px;
+          height: 48px;
+        }
+
+        .phase-icon svg {
+          width: 27px;
+          height: 27px;
+        }
+
+        .stamp {
+          position: relative;
+          left: auto;
+          bottom: auto;
+          margin: -2px auto 0 22px;
+          width: 102px;
+          height: 102px;
+          font-size: 15px;
+        }
+
+        .benefit-map {
+          padding: 14px;
+        }
+
+        .benefit-card,
+        .outcome-card {
+          padding: 14px;
+        }
+
+        .benefit-card strong,
+        .outcome-card strong {
+          font-size: 23px;
+        }
+      }
+
+      @media print {
+        html {
+          background: #fff;
+        }
+
+        .page {
+          max-width: none;
+          padding: 0;
+        }
+
+        .case-sheet,
+        .hero-visual,
+        .metric,
+        .tier,
+        .callout,
+        .mark {
+          box-shadow: none;
+        }
+
+        .section,
+        .hero {
+          break-inside: avoid;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <article class="case-sheet">
+        <header class="hero">
+          <div>
+            <div class="eyebrow">MCH Projects - Case Study</div>
+            <h1>Turning a Client Intake Form Into a Cleaner Automated Workflow</h1>
+            <p class="dek">
+              A service business needed to remove manual copying from its intake process: collect
+              client details, run calculations, and email results automatically so the team could
+              save time and reduce errors.
+            </p>
+
+            <div class="meta-grid" aria-label="Project summary">
+              <div class="meta-card">
+                <div class="label">Project Type</div>
+                <strong>Client intake form</strong>
+              </div>
+              <div class="meta-card">
+                <div class="label">Version</div>
+                <strong>Automated form + email</strong>
+              </div>
+              <div class="meta-card">
+                <div class="label">Next Step</div>
+                <strong>Dashboard version</strong>
+              </div>
+            </div>
+          </div>
+
+          <aside class="hero-visual" aria-label="Simplified process visual">
+            <div class="flow-card">
+              <div class="phase-icon" aria-hidden="true">
+                <svg viewBox="0 0 32 32">
+                  <path d="M13.5 10.5 16 8a6 6 0 0 1 8.5 8.5L22 19" />
+                  <path d="M18.5 21.5 16 24a6 6 0 0 1-8.5-8.5L10 13" />
+                  <path d="m12.5 19.5 7-7" />
+                </svg>
+              </div>
+              <div class="phase-copy">
+                <strong>Send Link</strong>
+                <span>Client receives one form link.</span>
+              </div>
+            </div>
+            <div class="flow-card">
+              <div class="phase-icon" aria-hidden="true">
+                <svg viewBox="0 0 32 32">
+                  <path d="M10 5h12l3 3v19H7V5h3Z" />
+                  <path d="M22 5v5h5" />
+                  <path d="M11 15h10" />
+                  <path d="M11 20h10" />
+                  <path d="M11 25h6" />
+                </svg>
+              </div>
+              <div class="phase-copy">
+                <strong>Fill Form</strong>
+                <span>Client enters the needed details online.</span>
+              </div>
+            </div>
+            <div class="flow-card">
+              <div class="phase-icon" aria-hidden="true">
+                <svg viewBox="0 0 32 32">
+                  <rect x="8" y="4" width="16" height="24" rx="2" />
+                  <path d="M11 9h10" />
+                  <path d="M12 15h2" />
+                  <path d="M18 15h2" />
+                  <path d="M12 20h2" />
+                  <path d="M18 20h2" />
+                  <path d="M12 25h8" />
+                </svg>
+              </div>
+              <div class="phase-copy">
+                <strong>Run Calculations</strong>
+                <span>The system prepares the numbers the team needs.</span>
+              </div>
+            </div>
+            <div class="flow-card">
+              <div class="phase-icon" aria-hidden="true">
+                <svg viewBox="0 0 32 32">
+                  <rect x="5" y="9" width="22" height="15" rx="2" />
+                  <path d="m7 11 9 7 9-7" />
+                  <path d="m7 23 7-6" />
+                  <path d="m25 23-7-6" />
+                </svg>
+              </div>
+              <div class="phase-copy">
+                <strong>Email Results</strong>
+                <span>The completed results are sent to the team.</span>
+              </div>
+            </div>
+            <div class="stamp" aria-label="Clean automated workflow">
+              <span class="stamp-small">Clean</span>
+              <span class="stamp-main">Automated</span>
+              <span class="stamp-small">Workflow</span>
+            </div>
+          </aside>
+        </header>
+
+        <section class="section">
+          <div class="section-grid">
+            <h2>Project Snapshot</h2>
+            <div>
+              <p class="lead">
+                This project turned a manual client intake process into an automated online form
+                that emails completed results to the team.
+              </p>
+              <p>
+                The business impact was straightforward: reduce manual copying, cut error risk, and
+                save team time every time the form is completed.
+              </p>
+              <p>
+                A dashboard can still be added later, but the high-impact part was the workflow
+                itself: send the link, collect the details, run the calculations, and get the results
+                to the team automatically.
+              </p>
+              <div class="pullquote">
+                The value was not just digitizing a form. The value was saving real team time inside
+                a repeated sales and intake process.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-grid">
+            <h2>The Problem</h2>
+            <div>
+              <p>
+                The existing process depended on several manual steps. A client or prospect would
+                fill out a Client Profile Questionnaire, send it back, and then a team member would
+                review the response and manually transfer the details into a spreadsheet or
+                calculation tool.
+              </p>
+              <p>
+                That process can work at low volume, but it creates extra manual work. It asks more
+                of the client, takes time from the team, and creates more chances for mistakes that
+                can slow down the next step.
+              </p>
+              <p>
+                A copied number can land in the wrong place. A required field can be missed. A
+                calculation can be delayed while someone checks formatting or reconciles unclear
+                information. Even when the team is careful, repeated manual transfer costs time and
+                increases risk.
+              </p>
+
+              <div class="metrics">
+                <div class="metric">
+                  <span class="number">30-45</span>
+                  <p>
+                    Estimated minutes that could be saved each time by reducing manual review,
+                    copying, and calculation prep.
+                  </p>
+                </div>
+                <div class="metric">
+                  <span class="number">Fewer</span>
+                  <p>
+                    Manual steps between client answers and the numbers the team needs.
+                  </p>
+                </div>
+                <div class="metric">
+                  <span class="number">Cleaner</span>
+                  <p>
+                    Client experience: one link, clear questions, submit once, automatic email.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-grid">
+            <h2>Before And After</h2>
+            <div>
+              <p class="lead">
+                The core improvement was changing the process from document handling to an online
+                form that sends the results.
+              </p>
+
+              <div class="workflow">
+                <div class="diagram before">
+                  <div class="diagram-title">
+                    <h3>Before</h3>
+                    <span class="tag">Manual</span>
+                  </div>
+                  <div class="steps">
+                    <div class="step"><b>1</b><span>Client receives a questionnaire or intake document.</span></div>
+                    <div class="step"><b>2</b><span>Client fills out sections and manages formatting.</span></div>
+                    <div class="step"><b>3</b><span>Client saves, attaches, and emails the response back.</span></div>
+                    <div class="step"><b>4</b><span>Team member reviews and copies data into a spreadsheet.</span></div>
+                    <div class="step"><b>5</b><span>Team checks the numbers and prepares the next step.</span></div>
+                  </div>
+                </div>
+
+                <div class="diagram after">
+                  <div class="diagram-title">
+                    <h3>After</h3>
+                    <span class="tag">Online</span>
+                  </div>
+                  <div class="steps">
+                    <div class="step"><b>1</b><span>Client receives a direct link to the intake form.</span></div>
+                    <div class="step"><b>2</b><span>Client answers the questions online.</span></div>
+                    <div class="step"><b>3</b><span>The digital system organizes the answers and runs the calculations.</span></div>
+                    <div class="step"><b>4</b><span>Completed results are emailed to the team.</span></div>
+                    <div class="step"><b>5</b><span>Team reviews faster and spends less time copying information.</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-grid">
+            <h2>The Solution</h2>
+            <div>
+              <p>
+                The solution was an online intake form that automated the most repetitive parts of
+                the process.
+              </p>
+              <p>
+                The client completes the intake online. The form captures the required answers in a
+                consistent format, runs the calculations needed for the next step, prepares the
+                result, and emails the completed form to the team.
+              </p>
+              <p>
+                This keeps the project focused on the work that saves time immediately: collect the
+                right information once, reduce manual copying, and get usable results to the team
+                faster.
+              </p>
+
+              <div class="principles">
+                <div class="principle">
+                  <h3>Online Intake</h3>
+                  <p>
+                    Clients get a cleaner path through the required questions instead of managing a
+                    document manually.
+                  </p>
+                </div>
+                <div class="principle">
+                  <h3>Consistent Results</h3>
+                  <p>
+                    The team receives information in the same format every time, making it easier to review
+                    and act on.
+                  </p>
+                </div>
+                <div class="principle">
+                  <h3>Email Delivery</h3>
+                  <p>
+                    The completed form is sent to the team automatically without a separate dashboard.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-grid">
+            <h2>Benefit Map</h2>
+            <div>
+              <p class="lead">
+                The strongest benefit is the overlap between time savings, lower error risk, and a
+                better client experience.
+              </p>
+              <p>
+                Any one of those benefits is useful on its own. Together, they create a cleaner
+                workflow that can help the team move faster, support clients better, and create more
+                capacity for deal-related work.
+              </p>
+
+              <div class="benefit-map" aria-label="Benefit map">
+                <div class="benefit-flow">
+                  <div class="benefit-stack">
+                    <div class="benefit-card">
+                      <strong>Team Time Saved</strong>
+                      <p>Less manual review, copying, and calculation prep on each completed form.</p>
+                    </div>
+                    <div class="benefit-card">
+                      <strong>Fewer Transfer Errors</strong>
+                      <p>Client answers move through the same form instead of being retyped by hand.</p>
+                    </div>
+                    <div class="benefit-card">
+                      <strong>Better Client Experience</strong>
+                      <p>One link, clear questions, and no document formatting or email attachment step.</p>
+                    </div>
+                  </div>
+                  <div class="benefit-arrow" aria-hidden="true">→</div>
+                  <div class="outcome-card">
+                    <strong>More Time For Better Work</strong>
+                    <p>
+                      Automation gives the team more time to review opportunities, support clients,
+                      follow up faster, and move qualified work forward.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-grid">
+            <h2>Business Impact</h2>
+            <div>
+              <h3>1. Time Savings</h3>
+              <p>
+                If a team member previously spent 30 to 45 minutes reviewing an intake form, copying
+                details into a spreadsheet, checking formatting, and preparing calculations, this
+                workflow can save a meaningful amount of time each time the form is completed. That
+                time has real cost, especially when the same process repeats across multiple
+                opportunities.
+              </p>
+
+              <h3>2. Reduced Human Error</h3>
+              <p>
+                Manual transfer creates risk. A consistent form and automatic calculations reduce the
+                number of places where information can be copied incorrectly, missed, or interpreted
+                differently from person to person.
+              </p>
+
+              <h3>3. Improved Client Experience</h3>
+              <p>
+                Clients no longer need to manage a document, format answers, attach a file, and
+                send it back manually. They receive a link, complete the form, and submit.
+                That makes the process feel clearer, more modern, and easier to complete.
+              </p>
+
+              <h3>4. More Capacity For Higher-Value Work</h3>
+              <p>
+                The time saved can be redirected toward reviewing the actual opportunity, responding
+                faster, preparing recommendations, supporting clients, and moving qualified work
+                forward.
+              </p>
+
+              <h3>5. Revenue Potential Without Overclaiming</h3>
+              <p>
+                This version does not claim a measured revenue increase. But it does create
+                conditions that can support revenue: less friction for clients, faster team
+                response, more consistent information, and more team capacity for sales and service
+                work.
+              </p>
+
+              <div class="callout">
+                <h3>Careful Claim</h3>
+                <p>
+                  The strongest honest claim is not "this automatically closes more deals." It is
+                  "this gives the team a faster, cleaner, more consistent process that can make it
+                  easier to close and support more work."
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-grid">
+            <h2>What Comes Next</h2>
+            <div>
+              <p class="lead">
+                The online form is the high-impact layer because it removes manual copying and sends
+                usable results to the team.
+              </p>
+              <p>
+                A dashboard can be added later if the team needs saved forms, assignment, status
+                tracking, reporting, admin views, CRM integration, or analytics.
+              </p>
+              <p>
+                The important part is that the foundation already improves the workflow. It saves
+                time, reduces error risk, and creates a cleaner experience before any heavier
+                software layer is added.
+              </p>
+
+              <div class="tier-ladder" aria-label="Tiered roadmap">
+                <div class="tier">
+                  <div class="tier-head">Tier 1</div>
+                  <div class="tier-body">
+                    <h3>Manual Intake</h3>
+                    <p>Static questionnaire, manual completion, manual email return, spreadsheet copying.</p>
+                  </div>
+                </div>
+                <div class="tier">
+                  <div class="tier-head">Tier 2</div>
+                  <div class="tier-body">
+                    <h3>Form + Email</h3>
+                    <p>Online form, consistent answers, automatic calculations, email delivery.</p>
+                    <p><strong>This case study covers this version.</strong></p>
+                  </div>
+                </div>
+                <div class="tier">
+                  <div class="tier-head">Tier 3</div>
+                  <div class="tier-body">
+                    <h3>Dashboard</h3>
+                    <p>Saved forms, admin review, statuses, reporting, team process tools.</p>
+                    <p><strong>Natural next step if the team needs more internal controls.</strong></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="closing">
+            <div>
+              <h2>Takeaway</h2>
+              <p class="lead">
+                The point was not simply to build a better form. The point was to make a repeated
+                business workflow faster, cleaner, and less dependent on manual copying.
+              </p>
+              <p>
+                By turning the client intake form into an online form with automatic calculations and
+                email delivery, the business gets a cleaner client experience, a more consistent
+                team review process, and more team capacity to spend on higher-value work.
+              </p>
+              <p>
+                That is the practical value of this kind of build: not software for its own sake, but
+                an automated workflow that can save real time and money while giving the business a
+                stronger system to grow from.
+              </p>
+            </div>
+            <div class="mark">
+              <span>Use Systems</span>
+              <span>Save Time</span>
+              <span>Serve Clients Better</span>
+            </div>
+          </div>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>

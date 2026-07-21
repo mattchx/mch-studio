@@ -30,7 +30,7 @@ export function Card({
   className?: string
 }) {
   return (
-    <div className={clsx('bg-surface border border-border rounded-2xl p-6', className)}>
+    <div className={clsx('border border-[#d8cdae] bg-white p-6 shadow-[6px_6px_0_#d9a441]', className)}>
       {children}
     </div>
   )
@@ -39,7 +39,7 @@ export function Card({
 // ─── Section Label ─────────────────────────────────────────
 export function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <div className="text-xs font-semibold text-accent uppercase tracking-widest mb-4">
+    <div className="text-xs font-semibold text-[#6a4b00] uppercase tracking-widest mb-4">
       {children}
     </div>
   )
@@ -73,7 +73,7 @@ export function Input({
     <input
       {...props}
       className={clsx(
-        'w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-foreground placeholder:text-muted focus:border-accent focus:ring-1 focus:ring-accent outline-none text-sm',
+        'w-full border border-[#d8cdae] bg-[#fff8df] px-4 py-3 text-[#1e211e] placeholder:text-[#8f8a7b] focus:border-[#d9a441] focus:ring-1 focus:ring-[#d9a441] outline-none text-sm',
         className
       )}
     />
@@ -89,7 +89,7 @@ export function Textarea({
     <textarea
       {...props}
       className={clsx(
-        'w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-foreground placeholder:text-muted focus:border-accent focus:ring-1 focus:ring-accent outline-none text-sm resize-none',
+        'w-full border border-[#d8cdae] bg-[#fff8df] px-4 py-3 text-[#1e211e] placeholder:text-[#8f8a7b] focus:border-[#d9a441] focus:ring-1 focus:ring-[#d9a441] outline-none text-sm resize-none',
         className
       )}
     />
@@ -106,7 +106,7 @@ export function Select({
     <select
       {...props}
       className={clsx(
-        'bg-surface-2 border border-border rounded-xl px-4 py-2.5 text-foreground text-sm focus:border-accent focus:ring-1 focus:ring-accent outline-none',
+        'border border-[#d8cdae] bg-[#fff8df] px-4 py-2.5 text-[#1e211e] text-sm focus:border-[#d9a441] focus:ring-1 focus:ring-[#d9a441] outline-none',
         className
       )}
     >
@@ -132,13 +132,13 @@ export function Button({
     <button
       {...props}
       className={clsx(
-        'inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer',
+        'inline-flex items-center gap-2 px-4 py-2.5 text-sm font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer',
         {
-          primary: 'bg-accent hover:bg-accent-hover text-white',
-          secondary: 'bg-surface-2 hover:bg-border text-foreground border border-border',
+          primary: 'border border-[#191919] bg-[#191919] text-[#f7d66b] hover:shadow-[4px_4px_0_#d9a441]',
+          secondary: 'border border-[#d8cdae] bg-white text-[#1e211e] hover:shadow-[4px_4px_0_#d9a441]',
           danger: 'bg-red-900/20 hover:bg-red-900/40 text-red-400 border border-red-800',
           ghost: 'text-muted hover:text-foreground hover:bg-surface-2',
-          success: 'bg-green-900/20 hover:bg-green-900/40 text-green-400 border border-green-800',
+          success: 'border border-[#d8bf62] bg-[#fff2bd] text-[#6a4b00] hover:bg-[#f6eac2]',
         }[variant],
         className
       )}
@@ -161,7 +161,7 @@ export function StatusMessage({
       className={clsx(
         'rounded-xl px-4 py-3 text-sm border',
         type === 'success'
-          ? 'bg-green-900/20 border-green-800 text-green-400'
+          ? 'bg-[#fff2bd] border-[#d8bf62] text-[#6a4b00]'
           : 'bg-red-900/20 border-red-800 text-red-400'
       )}
     >
@@ -186,7 +186,7 @@ export function Badge({
         'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium',
         {
           default: 'bg-surface-2 text-muted',
-          green: 'bg-green-900/30 text-green-400',
+          green: 'bg-[#fff2bd] text-[#6a4b00]',
           yellow: 'bg-yellow-900/30 text-yellow-400',
           red: 'bg-red-900/30 text-red-400',
           blue: 'bg-blue-900/30 text-blue-400',

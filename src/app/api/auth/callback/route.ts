@@ -10,5 +10,5 @@ export async function GET(request: NextRequest) {
     await supabase.auth.exchangeCodeForSession(code)
   }
 
-  return NextResponse.redirect(new URL('/queue', request.url))
+  return NextResponse.redirect(new URL('/studio', request.url))
 }

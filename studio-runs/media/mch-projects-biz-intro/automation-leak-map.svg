@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <rect width="1200" height="900" fill="#191919"/>
+  <rect x="58" y="58" width="1084" height="784" fill="#fffdf7" stroke="#f7d66b" stroke-width="10"/>
+  <rect x="86" y="86" width="1028" height="728" fill="#ffffff" stroke="#191919" stroke-width="4"/>
+
+  <image href="mch-projects-logo.png" x="84" y="52" width="312" height="230" preserveAspectRatio="xMidYMid meet"/>
+
+  <text x="116" y="288" fill="#191919" font-family="Arial, Helvetica, sans-serif" font-size="78" font-weight="900">Where are</text>
+  <text x="116" y="370" fill="#191919" font-family="Arial, Helvetica, sans-serif" font-size="78" font-weight="900">leads leaking?</text>
+  <text x="120" y="426" fill="#5b6159" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="600">Most service businesses do not need more chaos. They need one clean path.</text>
+
+  <g transform="translate(116 510)">
+    <rect x="0" y="0" width="214" height="148" fill="#fff8df" stroke="#191919" stroke-width="3"/>
+    <text x="24" y="44" fill="#191919" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="900">Missed inquiry</text>
+    <text x="24" y="83" fill="#5b6159" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700">Form lands in inbox</text>
+    <text x="24" y="115" fill="#b91c1c" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="800">No owner assigned</text>
+
+    <path d="M236 74 H296" stroke="#191919" stroke-width="6"/>
+    <path d="M296 74 l-18 -15 v30 z" fill="#191919"/>
+
+    <rect x="320" y="0" width="214" height="148" fill="#ffffff" stroke="#191919" stroke-width="3"/>
+    <text x="344" y="44" fill="#191919" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="900">Slow follow-up</text>
+    <text x="344" y="83" fill="#5b6159" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700">Reminder depends</text>
+    <text x="344" y="115" fill="#b91c1c" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="800">on memory</text>
+
+    <path d="M556 74 H616" stroke="#191919" stroke-width="6"/>
+    <path d="M616 74 l-18 -15 v30 z" fill="#191919"/>
+
+    <rect x="640" y="0" width="250" height="148" fill="#191919" stroke="#191919" stroke-width="3"/>
+    <text x="664" y="44" fill="#f7d66b" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="900">Automation map</text>
+    <text x="664" y="83" fill="#fff8df" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700">Capture, route,</text>
+    <text x="664" y="115" fill="#fff8df" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700">follow up, onboard</text>
+  </g>
+
+  <g transform="translate(116 700)">
+    <rect x="0" y="0" width="418" height="74" fill="#fff2bd" stroke="#191919" stroke-width="3"/>
+    <text x="24" y="48" fill="#191919" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="900">Get the leak map first.</text>
+    <rect x="450" y="0" width="360" height="74" fill="#191919"/>
+    <text x="478" y="48" fill="#f7d66b" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="900">Then build the system.</text>
+  </g>
+
+  <g transform="translate(828 172)">
+    <rect x="0" y="0" width="214" height="214" fill="#fff8df" stroke="#191919" stroke-width="3"/>
+    <circle cx="107" cy="96" r="48" fill="#00b4d8"/>
+    <path d="M84 96 h46 M130 96 l-18 -18 M130 96 l-18 18" stroke="#191919" stroke-width="10" fill="none"/>
+    <text x="44" y="178" fill="#191919" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="900">24h target</text>
+  </g>
+</svg>
