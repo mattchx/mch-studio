@@ -1,5 +1,11 @@
 # MCH Studio — Status
 
+> **SHUT DOWN 2026-07-21 per MRR audit ruling.** No further development, deploys, or outreach.
+> Ruling doc: `vault/MCH Projects/Strategy/MRR Path Audit — Projections + Kill Panel 2026-07-21.md`
+> Full build is committed and pushed (`70770d2`), including the previously-untracked `studio-runs/`.
+> **Retained:** the `/studio-generate` skill (`studio-runs/_skills/studio-generate.md`) and
+> `studio-runs/posts.json` stay intact as a passive demo-content utility. Everything below is historical.
+
 ## What happened
 - Renamed from Command Center to MCH Studio
 - Stripped all CRM features (pipeline, contacts, follow-ups, call logs) — those live in Arc now
